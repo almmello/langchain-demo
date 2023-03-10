@@ -24,7 +24,7 @@ llm = OpenAI(temperature=0)
 # Load text documents and create vector stores
 astronauts_loader = TextLoader("data/astronauts/astronauts.txt")
 astronauts_documents = astronauts_loader.load()
-astronauts_text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+astronauts_text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 astronauts_texts = astronauts_text_splitter.split_documents(astronauts_documents)
 astronauts_embeddings = OpenAIEmbeddings()
 astronauts_store = Chroma.from_documents(astronauts_texts, astronauts_embeddings, collection_name="astronauts")
