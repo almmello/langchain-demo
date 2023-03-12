@@ -20,7 +20,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 llm = OpenAI(temperature=0)
 
 # Load opportunity text and create vector stores
-text_loader = TextLoader("data/astronauts/astronauts-355.txt")
+text_loader = TextLoader("data/astronauts/astronauts.txt")
 documents = text_loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 texts = text_splitter.split_documents(documents)

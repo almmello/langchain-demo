@@ -1,4 +1,5 @@
 chromadb
+faiss-cpu
 openai
 langchain
 python-dotenv
