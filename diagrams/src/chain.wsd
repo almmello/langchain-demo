@@ -1,0 +1,80 @@
+@startuml
+
+class Planet {
+    -TXT File: Planet.txt
+    -Document loader
+    -Text Splitter
+    -Embeddings
+    -Vectorstore: FAISS
+}
+
+class Astronauts {
+    -TXT File: Astronauts.txt
+    -Document loader
+    -Text Splitter
+    -Embeddings
+    -Vectorstore: FAISS
+}
+
+class Spaceships {
+    -TXT File: Spaceships.txt
+    -Document loader
+    -Text Splitter
+    -Embeddings
+    -Vectorstore: FAISS
+}
+
+together {
+  class LLM {
+  }
+
+  class Planet_VectorDBQA {
+      -chain_type: stuff
+  }
+
+  class Astronauts_VectorDBQA{
+      -chain_type: stuff
+  }
+
+  class Spaceships_VectorDBQA{
+      -chain_type: stuff
+  }
+}
+
+class Tool {
+    +planet-tool:
+    +astronauts-tool:
+    +spaceships-tool:
+}
+
+class Agent {
+    -agent: zero-shot-react-description
+    -verbose: True
+}
+
+class Prompt {
+}
+
+class Response {
+}
+
+
+Planet --> Planet_VectorDBQA 
+Astronauts --> Astronauts_VectorDBQA 
+Spaceships --> Spaceships_VectorDBQA 
+
+
+LLM --> Planet_VectorDBQA
+LLM --> Astronauts_VectorDBQA
+LLM --> Spaceships_VectorDBQA
+LLM --> Agent
+
+Planet_VectorDBQA --> Tool
+Astronauts_VectorDBQA --> Tool
+Spaceships_VectorDBQA --> Tool
+Tool --> Agent
+
+Agent --> Prompt
+Prompt --> Response
+
+@enduml
